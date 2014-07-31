@@ -8,6 +8,7 @@
 [AngularJS](https://angularjs.org/) is **awesome**!
 
 [ProcessMaker](http://www.processmaker.com/) is **amazing**!
+<<<<<<< HEAD:README.MD
 
 **Now you can connect the two, thanks to ProcessMaker's new REST API with OAuth 2.0!**
 
@@ -36,4 +37,4 @@ Install yeoman:
 ```
 $ npm install -g yo
 ```
-Install
+
