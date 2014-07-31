@@ -38,3 +38,12 @@ Install yeoman:
 $ npm install -g yo
 ```
 
+Install npm dependencies:
+```
+$ npm install
+```
+
+Install bower dependencies:
+```
+$ bower install
+```
