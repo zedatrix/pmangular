@@ -1,0 +1,36 @@
+<div class="row-fluid" id="start-case-area">
+    <h4 class="header green">#{{dynaform.app_number}}</h4>
+
+    <div class="row-fluid">
+        <div class="span5">
+            <div class="widget-box">
+                <div class="widget-header">
+                    <h4>{{dynaform.mainTitle}}</h4>
+                </div>
+
+                <div class="widget-body">
+                    <div class="widget-main no-padding">
+                        <form id="my_dynaform">
+                            <fieldset>
+                                <div ng-repeat="row in dynaform.fields">
+                                    <div class="controls" ng-repeat="field in row">
+                                        <span ng-if="field.type!=='submit' && field.type" class="span{{field.colSpan}}">
+                                            <label>{{field.label}}</label>
+                                            <input type="{{field.type}}" id="{{field.variable}}" placeholder="{{field.hint}}" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="form-actions center">
+                                <button class="btn btn-small btn-success" ng-click="submitCase()">
+                                    {{dynaform.submit.label}}
+                                    <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
