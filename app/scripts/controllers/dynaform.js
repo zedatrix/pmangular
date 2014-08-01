@@ -41,6 +41,7 @@ angular.module('pmAngular')
          */
 
         $scope.submitCase = function(){
+            $localStorage.delIndex = ($localStorage.delIndex === null) ? 1 : $localStorage.delIndex;
             //Instantiate an object in order to use to create the object that we will be sending to ProcessMaker
             //In the .each loop
             var dataObj = {};

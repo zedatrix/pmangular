@@ -33,6 +33,8 @@ To install:
 
 Clone/fork the repo: [https://github.com/zeddie/pmangular.git](https://github.com/zeddie/pmangular.git)
 
+You will need [NodeJS](http://nodejs.org/) installed.
+
 Install yeoman:
 ```
 $ npm install -g yo
@@ -47,3 +49,13 @@ Install bower dependencies:
 ```
 $ bower install
 ```
+
+## Connecting to ProcessMaker
+
+You can use the settings defined to connect to a demo instance of ProcessMaker.
+
+If you want to connect to your own ProcessMaker 3.0, you will need to follow the wiki steps outlined here: [ProcessMaker Wiki](http://3x.wiki.processmaker.com/index.php/OAUTH_2.0).
+
+You can download the BETA version of ProcessMaker 3.0 from [here](http://sourceforge.net/projects/processmaker/files/ProcessMaker/3.0/3.0-Beta/).
+
+The app is already configured to connect with the ProcessMaker 3.0 OAuth 2.0 flow, you just need to create the app on your instance and then swap the ```site```, ```redirect_uri```, ```client_id``` and the ```client_secret``` to that which you will receive when you create your app.
