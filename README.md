@@ -53,6 +53,7 @@ $ bower install
 ## Connecting to ProcessMaker
 
 You can use the settings defined to connect to a demo instance of ProcessMaker.
+
 Username: **demouser**
 Password: **12345**
 
