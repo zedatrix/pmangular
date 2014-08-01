@@ -39,7 +39,8 @@ angular.module('pmAngular')
         $scope.currentPage = $route.current.currentPage;
         //Set the current pages description to the current pages description
         $scope.pageDesc = $route.current.pageDesc;
-
+        //We want to destroy the delegation index if the current page is not a dynaform so that the next time
+        //We load a page, it does not use a delegation index of a different application
         if($scope.currentPage !== 'Dynaform') $localStorage.delIndex = null;
     });
     //When the user logs in, we do some things on this event
