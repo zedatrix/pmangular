@@ -53,6 +53,8 @@ $ bower install
 ## Connecting to ProcessMaker
 
 You can use the settings defined to connect to a demo instance of ProcessMaker.
+Username: **demouser**
+Password: **12345**
 
 If you want to connect to your own ProcessMaker 3.0, you will need to follow the wiki steps outlined here: [ProcessMaker Wiki](http://3x.wiki.processmaker.com/index.php/OAUTH_2.0).
 
