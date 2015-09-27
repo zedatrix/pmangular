@@ -64,7 +64,8 @@ gulp.task('build', function () {
 
 		  	var appStream = gulp.src([
 		  		'./src/app.js',
-		  		'./src/config/config.js',
+		  		'./src/config/routes.js',
+		  		'./src/config/variables.js',
 		  		//'./src/services/*.js',
 		  		'./src/services/ng-oauth.js',
 		  		'./src/services/api.js',
