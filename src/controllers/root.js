@@ -7,21 +7,21 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('RootCtrl', function RootCtrl($rootScope, $scope, $location, $localStorage, $route, $http, API, appTitle, genericHeaders, activeMenuItems, api_url, AccessToken){
+.controller('RootCtrl', function RootCtrl($rootScope, $scope, $location, $localStorage, $state, $http, API, appTitle, genericHeaders, activeMenuItems, api_url, AccessToken){
     //Define the column names for the grids. In this case, we are creating global columns, but you could just redefine this array on any controller
     //To overwrite them for a specific page
     $scope.gridHeaders = genericHeaders;
     //Define the application title and set it to the scope so that the view renders it
     $scope.appTitle = appTitle;
     //This function sets the sidebar menu to active based on the page selected
-    $scope.setSelectedPage = function(){
+    $scope.setSelectedPage = function(currentPage){
         //List of all the menu items so that we can loop through them
         var list = activeMenuItems;
         //Loop through all the menu items
         $.each(list, function(key, value){
             //Check if the current page is equal a key
             //If it is, make it active
-            if($route.current.currentPage === key) $scope[value] = 'active';
+            if(currentPage === key) $scope[value] = 'active';
             //Otherwise, make the rest of them inactive so only the currently active one is displayed as active
             else $scope[value] = '';
         });
@@ -32,34 +32,34 @@ angular.module('pmAngular')
          * @desc Fun stuff!!!!
          */
     //When the applications state has changed to another route, we want to fire some things on this event
-    $scope.$on('$routeChangeSuccess', function(){
+    $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
         //Change the menu item selected as active whenever the page is changed
-        $scope.setSelectedPage();
+        $scope.setSelectedPage(toState.currentPage);
         //Set the current pages name to the current page
-        $scope.currentPage = $route.current.currentPage;
+        $scope.currentPage = toState.currentPage;
         //Set the current pages description to the current pages description
-        $scope.pageDesc = $route.current.pageDesc;
+        $scope.pageDesc = toState.pageDesc;
         //We want to destroy the delegation index if the current page is not a dynaform so that the next time
         //We load a page, it does not use a delegation index of a different application
         if($scope.currentPage !== 'Dynaform') $localStorage.delIndex = null;
+        //During the authentication process the http headers could have changed to Basic
+        //So we just reinforce the headers with the Bearer authorization as well as the updated access_token
+        $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.accessToken;
     });
     //When the user logs in, we do some things on this event
-    $scope.$on('oauth:login', function(event, token){
+    $rootScope.$on('oauth:login', function(event, token){
         //This is EXTREMELY important - The whole UI is rendered based on if this is an acces_token
         //So, we assign the scopes accessToken to the token
         //If the user is not logged in, the token object will be undefined
         //If the user IS logged in, the token object will hold the token information
         //E.g. access_token, refresh_token, expiry etc
-        $scope.accessToken = token.access_token;
-        //During the authentication process the http headers could have changed to Basic
-        //So we just reinforce the headers with the Bearer authorization as well as the updated access_token
-        $http.defaults.headers.common.Authorization = 'Bearer ' + $scope.accessToken;
+        $localStorage.accessToken = token.access_token;
     });
     //When the user logs out, we do some things on this event
-    $scope.$on('oauth:logout', function(){
+    $rootScope.$on('oauth:logout', function(){
         //The user has logged out, so we destroy the access_token
         //Because of Angulars awesome live data binding, this automatically renders the view innate
-        $scope.accessToken = null;
+        $localStorage.accessToken = null;
         //Destory the AccessToken object
         AccessToken.destroy();
         //Set the pages name to an unauthorized message
@@ -101,4 +101,8 @@ angular.module('pmAngular')
             }
         });
     };
+
+    $scope.authenticated = function() {
+        if ($localStorage.accessToken && $localStorage.accessToken.length > 1) return true;
+    }
 });

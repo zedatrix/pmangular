@@ -89,6 +89,7 @@ gulp.task('build', function () {
 				.pipe(replace('$$WelcomeMessage$$', config.WelcomeMessage))
 				.pipe(replace('$$NoCasesMessage$$', config.NoCasesMessage))
 				.pipe(replace('$$FormSubmittedMessage$$', config.FormSubmittedMessage))
+				.pipe(replace('$$DefaultWelcomeMessage$$', config.DefaultWelcomeMessage))
 			  	.pipe(sourcemaps.write())
 				.pipe(gulp.dest('./dist'));
 
@@ -198,6 +199,10 @@ gulp.task('build', function () {
 				.pipe(gulp.dest('./dist'));
 		break;
 		}
+
+	var htaccessFile = gulp.src('./src/.htaccess')
+		.pipe(replace('$$RewriteUrl$$', config.RewriteUrl))
+		.pipe(gulp.dest('./dist'));
 	gulp.src('./public/assets/font/*')
 	.pipe(copy('./dist/font', {prefix: 3}));
 

@@ -1,5 +1,6 @@
 env: dev
 BaseUrl: /repos/pmangular/dist/
+RewriteUrl: /repos/pmangular/dist/index.html
 ApiUrl: http://pm.stable/api/1.0/workflow/
 AppTitle: pmAngular
 WelcomeMessage: Welcome to the Angular JS ProcessMaker Front End! You are successfully logged in!
