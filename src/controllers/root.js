@@ -65,7 +65,7 @@ angular.module('pmAngular')
         //Set the pages name to an unauthorized message
         $scope.currentPage = 'Please Login.';
         //Set the pages description to an unauthorized message
-        $scope.pageDesc = 'Welcome to pmAngular. You need to log in with your ProcessMaker account in order to continue.';
+        $scope.pageDesc = '$$DefaultWelcomeMessage$$';
         //Redirect the user back to the home page
         $location.url('/home');
     });

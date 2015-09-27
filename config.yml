@@ -1,2 +1,17 @@
 env: dev
-baseUrl: /repos/pmangular/dist/
+BaseUrl: /repos/pmangular/dist/
+ApiUrl: http://pm.stable/api/1.0/workflow/
+AppTitle: pmAngular
+WelcomeMessage: Welcome to the Angular JS ProcessMaker Front End! You are successfully logged in!
+DefaultWelcomeMessage: Welcome to pmAngular. You need to log in with your ProcessMaker account in order to continue.
+NoCasesMessage: There are no cases to display. Please choose another folder.
+FormSubmittedMessage: Thank you for submitting the case. You may continue with other work now!
+NoProcessesToDisplayMessage: There are no processes to display.
+OauthButton:
+  text: Log In
+  scope: view_processes edit_processes
+  site: http://pm.stable/workflow
+  clientId: JJVBJCMUHORMHERIGJLZUHNLRIQTOVQY
+  redirectUri: http://localhost/repos/pmangular/dist
+  authorizePath: /oauth2/authorize
+  tokenPath: /oauth2/token

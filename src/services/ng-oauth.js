@@ -371,7 +371,8 @@ directives.directive('oauth', [
   '$compile',
   '$http',
   '$templateCache',
-  function(AccessToken, Endpoint, Profile, Storage, $location, $rootScope, $compile, $http, $templateCache) {
+  'config_object',
+  function(AccessToken, Endpoint, Profile, Storage, $location, $rootScope, $compile, $http, $templateCache, config_object) {
 
     var definition = {
       restrict: 'AE',
@@ -409,14 +410,17 @@ directives.directive('oauth', [
       };
 
       var initAttributes = function() {
-        scope.authorizePath = scope.authorizePath || '/oauth2/authorize';
-        scope.tokenPath     = scope.tokenPath     || '/oauth2/token';
+        scope.authorizePath = scope.authorizePath || config_object.oauth_button.authorizePath;
+        scope.tokenPath     = scope.tokenPath     || config_object.oauth_button.tokenPath;
         scope.template      = scope.template      || 'views/templates/button.html';
         scope.responseType  = scope.responseType  || 'token';
-        scope.text          = scope.text          || 'Sign In';
+        scope.text          = scope.text          || config_object.oauth_button.text;
         scope.state         = scope.state         || undefined;
-        scope.scope         = scope.scope         || undefined;
+        scope.scope         = scope.scope         || config_object.oauth_button.scope;
         scope.storage       = scope.storage       || 'sessionStorage';
+        scope.site          = scope.site          || config_object.oauth_button.site;
+        scope.clientId      = scope.clientId      || config_object.oauth_button.clientId;
+        scope.redirectUri   = scope.redirectUri   || config_object.oauth_button.redirectUri;
       };
 
       var compile = function() {

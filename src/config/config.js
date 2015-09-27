@@ -63,15 +63,7 @@ angular.module('pmAngular')
         otherwise({
             redirectTo: 'home'
         });
-        // override the $browser.baseHref() method so it returns "/" without needing to use a <base href="/"> element
-        // in the head of the document (which causes problems with SVG patterns amongst other things)
-        //document.write("<base href='/repos/pmangular/dist/' />");
-        //document.baseURI.href ='/repos/pmangular/dist/';
-        /*var theBase = document.getElementsByTagName("base");
-        theBase[0].href = '/repos/pmangular/dist/';*/
-        //baseHref = function() { return "http://localhost/repos/pmangular/dist/" };
-    // configure html5 to get links working on jsfiddle
-        //$browserProvider.baseHref = function() { return "http://localhost/repos/pmangular/dist/" };
+
     $locationProvider.html5Mode(true);
 
     $httpProvider.interceptors.push('ExpiredInterceptor');
@@ -90,12 +82,11 @@ angular.module('pmAngular')
 });
 
 //The url for the REST API
-var api_url = 'http://pm.stable/api/1.0/workflow/';
-//Inject the REST API url into our application so that we can use it
-angular.module('pmAngular').value('api_url', api_url);
+angular.module('pmAngular').value('api_url', '$$ApiUrl$$');
+angular.module('pmAngular').value('config_object', $$ConfigObject$$);
 //Inject the name of the application into our application so that we can use iit
 //When we render the page
-angular.module('pmAngular').value('appTitle', 'pmAngular');
+angular.module('pmAngular').value('appTitle', '$$AppTitle$$');
 //Define the generic header for the case list view
 angular.module('pmAngular').value('genericHeaders', [
     {title: 'Case #'},

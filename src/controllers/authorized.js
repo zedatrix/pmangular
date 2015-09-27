@@ -18,7 +18,7 @@ angular.module('pmAngular')
         //No message in the localStorage, so set newMessage to false
         $scope.newMessage = false;
         //Display the default message
-        $scope.WelcomeMessage = 'Welcome to the Angular JS ProcessMaker Front End! You are successfully logged in!';
+        $scope.WelcomeMessage = '$$WelcomeMessage$$';
     }
     //Destory the message in the localStorage now that we have displayed it in the scope
     $localStorage.message = null;

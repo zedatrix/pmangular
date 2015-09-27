@@ -21,7 +21,7 @@ angular.module('pmAngular')
                 if($scope.proList.length===0){
                     //#new-process-area is the area on the page we are rendering
                     //The list of processes, so we are setting it's HTML equal to the display message
-                    $('#new-process-area').html('There are no processes to display.');
+                    $('#new-process-area').html('$$NoProcessesToDisplayMessage$$');
                 }
                 });
         }();//We auto instantiate the method in order to have it get the information from the API and display on load of the controller

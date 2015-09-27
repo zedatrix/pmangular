@@ -79,7 +79,7 @@ angular.module('pmAngular')
                         //Send the user back to their home inbox since they have submitted the form
                         $location.url('/home');
                         //Display a user friendly message to the user that they have successfully submitted the case
-                        $localStorage.message = 'Thank you for submitting the case. You may continue with other work now!';
+                        $localStorage.message = '$$FormSubmittedMessage$$';
                     },
                     //Define the request type, in this case, PUT
                     'PUT');

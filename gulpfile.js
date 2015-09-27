@@ -9,34 +9,18 @@ var copy = require('gulp-copy');
 var ngConstant = require('gulp-ng-constant');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
+var replace = require('gulp-replace');
 
 config = yaml.load('./config.yml');
+//console.log(config);
+gulp.task('default', ['build', 'templates'], function(){
 
-gulp.task('config', function(){
-	/*return gulp.src('')
-    .pipe(ngConstant({
-    	name: 'pmAngular',
-    	deps: [
-			'oauth',
-		    'oauth.directive',
-		    'oauth.accessToken',
-		    'oauth.endpoint',
-		    'oauth.profile',
-		    'oauth.interceptor',
-		    'ngRoute',
-		    'ui.bootstrap'
-    	],
-    	//wrap: 'commonjs',
-      	constants: { baseUrl: config.baseUrl },
-    }))
-    .pipe(rename('app.js'))
-    .pipe(gulp.dest('src'));*/
 });
 gulp.task('templates', function(){
 	return gulp.src('./src/views/**/*.html')
 	.pipe(gulp.dest('./dist/views'));
 });
-gulp.task('build', ['config', 'templates'], function () {
+gulp.task('build', function () {
 	//Define the source file for the index.html
   	var indexFile = gulp.src('./src/index.html');
   	/*
@@ -89,6 +73,22 @@ gulp.task('build', ['config', 'templates'], function () {
 		  		])
 			  	.pipe(sourcemaps.init())
 				.pipe(concat('app.js'))
+				.pipe(replace('$$ConfigObject$$', "{\n" +
+				"\t\toauth_button : {\n"+
+				"\t\t\ttext: '"+config.OauthButton.text+"',\n" +
+				"\t\t\tscope: '"+config.OauthButton.scope+"',\n" +
+				"\t\t\tsite: '"+config.OauthButton.site+"',\n" +
+				"\t\t\tclientId: '"+config.OauthButton.clientId+"',\n" +
+				"\t\t\tredirectUri: '"+config.OauthButton.redirectUri+"',\n" +
+				"\t\t\tauthorizePath: '"+config.OauthButton.authorizePath+"',\n" +
+				"\t\t\ttokenPath: '"+config.OauthButton.tokenPath+"'\n" +
+				"\t\t}\n" +
+				"\t}\n"))
+				.pipe(replace('$$ApiUrl$$', config.ApiUrl))
+				.pipe(replace('$$AppTitle$$', config.AppTitle))
+				.pipe(replace('$$WelcomeMessage$$', config.WelcomeMessage))
+				.pipe(replace('$$NoCasesMessage$$', config.NoCasesMessage))
+				.pipe(replace('$$FormSubmittedMessage$$', config.FormSubmittedMessage))
 			  	.pipe(sourcemaps.write())
 				.pipe(gulp.dest('./dist'));
 
@@ -213,6 +213,7 @@ gulp.task('build', ['config', 'templates'], function () {
 			),
 			{relative: true})
 		)
+	  .pipe(replace('$$BaseUrl$$', config.BaseUrl))
   		.pipe(gulp.dest('dist'));
 });
 
@@ -227,6 +228,6 @@ gulp.task('scripts', function(){
 });
 
 gulp.task('watch', function(){
-	gulp.watch('./src/**/*.{js,html}', ['build'])
+	gulp.watch('./src/**/*.{js,html}', ['default'])
     //gulp.watch('src/*.{js,coffee}', ['scripts']);
 });

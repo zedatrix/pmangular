@@ -26,7 +26,7 @@ angular.module('pmAngular')
                     '<i class="icon-remove"></i>'+
                     '</button>'+
                     '<i class="icon-ok blue"></i>'+
-                    'There are no cases to display. Please choose another folder.'+
+                    '$$NoCasesMessage$$'+
                 '</div>'
             );
         }
