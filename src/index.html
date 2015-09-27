@@ -1,0 +1,99 @@
+<!doctype html>
+<html ng-app="pmAngular" ng-controller="RootCtrl">
+  <head>
+    <base href="/repos/pmangular/dist/" />
+    <meta charset="utf-8">
+    <title>{{appTitle}}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- inject:css -->
+    <!-- endinject -->
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <!--<section ui-view="navbar_view"></section>
+    <main id="main-container container-fluid">
+        <section ui-view="sidebar_view"></section>
+        <section ui-view="main_view"></section>
+
+    </main>-->
+    <nav class="navbar" id="navbar">
+        <script type="text/javascript">try{ace.settings.check('navbar' , 'fixed')}catch(e){}</script>
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a href="/home" class="brand"><small>{{ appTitle }}</small></a>
+                <ul id="user-nav" class="nav ace-nav pull-right">  <oauth
+                        site="http://pm.stable/workflow"
+                        client-id="JJVBJCMUHORMHERIGJLZUHNLRIQTOVQY"
+                        redirect-uri="http://localhost/repos/pmangular/dist"
+                        text="ProcessMaker Login"
+                        scope="view_processes edit_processes">
+                </oauth></ul>
+            </div>
+        </div>
+    </nav>
+    <div class="sidebar" id="sidebar" ng-show="accessToken">
+        <script type="text/javascript">
+            try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+        </script>
+        <ul class="nav nav-list">
+            <li class="{{newprocessSelected}}">
+                <a href="newprocess">
+                    <i class="icon-edit"></i>
+                    <span class="menu-text"> New Process </span>
+                </a>
+            </li>
+            <li class="{{inboxSelected}}">
+                <a href="inbox">
+                    <i class="icon-dashboard"></i>
+                    <span class="menu-text"> Inbox </span>
+                </a>
+            </li>
+            <li class="{{draftSelected}}">
+                <a href="draft">
+                    <i class="icon-file-alt"></i>
+                    <span class="menu-text"> Draft </span>
+                </a>
+            </li>
+        <script type="text/javascript">
+            try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+        </script>
+    </div>
+    <main id="main-container container-fluid">
+        <div class="main-content">
+            <div class="page-content">
+                <div class="page-header position-relative">
+                    <h1>
+                        {{currentPage}}
+                    </h1>
+                </div><!--/.page-header-->
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <!--PAGE CONTENT BEGINS-->
+
+                        <h4 class="pink">
+                            <i class="icon-hand-right icon-animated-hand-pointer blue"></i>
+                            <a href="#" role="button" class="green" data-toggle="modal">{{pageDesc}}</a>
+                        </h4>
+
+                        <div class="hr hr-18 dotted hr-double"></div>
+    <div ng-view></div>
+                        <div style="display: none;" id="form-area"></div>
+                    </div>
+                    <!--PAGE CONTENT ENDS-->
+                </div><!--/.span-->
+            </div><!--/.row-fluid-->
+        </div><!--/.page-content-->
+        </div><!--/.main-content-->
+
+
+    </main>
+    <!-- inject:js -->
+    <!-- endinject -->
+</body>
+</html>
