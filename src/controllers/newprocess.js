@@ -7,7 +7,7 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('NewprocessCtrl', function ($rootScope, $scope, $http, $location, $localStorage, API){
+.controller('NewprocessController', function ($rootScope, $scope, $http, $location, $localStorage, API){
         $scope.getProcessList = function(){
             //Set the requestType
             API.setRequestType('project');

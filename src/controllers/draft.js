@@ -7,7 +7,7 @@
 /* global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('DraftCtrl', function (API, $scope){
+.controller('DraftController', function (API, $scope){
     //Set the requestType
     API.setRequestType('cases/draft');
     //Make the API call to get the list of cases in draft status

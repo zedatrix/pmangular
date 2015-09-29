@@ -7,7 +7,7 @@
 /* global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('ParticipatedCtrl', function ($scope, API) {
+.controller('ParticipatedController', function ($scope, API) {
     //Set the requestType
     API.setRequestType('cases/participated');
     //Make the API call to get the list of cases in participated status

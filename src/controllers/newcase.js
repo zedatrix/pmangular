@@ -7,7 +7,7 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('NewcaseCtrl', function ($scope, $http, $location, $localStorage, API){
+.controller('NewcaseController', function ($scope, $http, $location, $localStorage, API){
         //Assign the list of starting tasks from localStorage to the scope so that we can render it in the view
         $scope.taskList = $localStorage.startingTasks;
         /**

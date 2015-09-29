@@ -7,7 +7,7 @@
 /* global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('UnassignedCtrl', function ($scope, API) {
+.controller('UnassignedController', function ($scope, API) {
         //Set the requestType
         API.setRequestType('cases/unassigned');
         //Make the API call to get the list of cases in unassigned status

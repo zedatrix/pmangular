@@ -7,7 +7,7 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('RootCtrl', function RootCtrl($rootScope, $scope, $location, $localStorage, $state, $http, API, appTitle, genericHeaders, activeMenuItems, api_url, AccessToken){
+.controller('RootController', function RootCtrl($rootScope, $scope, $location, $localStorage, $state, $http, API, appTitle, genericHeaders, activeMenuItems, api_url, AccessToken){
     //Define the column names for the grids. In this case, we are creating global columns, but you could just redefine this array on any controller
     //To overwrite them for a specific page
     $scope.gridHeaders = genericHeaders;
@@ -55,6 +55,19 @@ angular.module('pmAngular')
         //E.g. access_token, refresh_token, expiry etc
         $localStorage.accessToken = token.access_token;
     });
+    $rootScope.$on('oauth:loggedOut', function(event, token){
+        //The user has logged out, so we destroy the access_token
+        //Because of Angulars awesome live data binding, this automatically renders the view innate
+        $localStorage.accessToken = null;
+        //Destory the AccessToken object
+        AccessToken.destroy();
+        //Set the pages name to an unauthorized message
+        $scope.currentPage = 'Please Login.';
+        //Set the pages description to an unauthorized message
+        $scope.pageDesc = '$$DefaultWelcomeMessage$$';
+        //Redirect the user back to the home page
+        $state.go('app.home');
+    });
     //When the user logs out, we do some things on this event
     $rootScope.$on('oauth:logout', function(){
         //The user has logged out, so we destroy the access_token
@@ -67,7 +80,7 @@ angular.module('pmAngular')
         //Set the pages description to an unauthorized message
         $scope.pageDesc = '$$DefaultWelcomeMessage$$';
         //Redirect the user back to the home page
-        $location.url('/home');
+        $state.go('app.home');
     });
 
     /**

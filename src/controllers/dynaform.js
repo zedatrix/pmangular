@@ -7,7 +7,7 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('DynaformCtrl', function ($scope, $location, $localStorage, API) {
+.controller('DynaformController', function ($scope, $location, $localStorage, API) {
 
         //Instantiate the dynaform object so that we can assign properties to it
         $scope.dynaform = {};

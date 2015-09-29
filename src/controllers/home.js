@@ -6,7 +6,7 @@
  */
 'use strict';
 angular.module('pmAngular')
-.controller('HomeCtrl', function ($scope, $localStorage){
+.controller('HomeController', function ($scope, $localStorage){
     //Check if localStorage has a message to display
     if ( $localStorage.message ){
         //Set the newMessage to true so that it will show on the home page

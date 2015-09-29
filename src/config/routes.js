@@ -2,59 +2,102 @@ angular.module('pmAngular')
     .config(['$locationProvider', '$httpProvider', '$browserProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $httpProvider, $browserProvider, $stateProvider, $urlRouterProvider){
         //Configure the url routes, this is basically the navigation of the app
         //For each route we define it's associated: template, controller, template variables: page name and description
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/app');
 
         $stateProvider
-            .state('home', {
-                url: '/home',
-                controller: 'HomeCtrl',
+            .state('app', {
+                url: '/app',
+                //abstract: true,
+                pageDesc: 'AngularJS meets ProcessMaker! This is your App Page!',
+                currentPage: 'App',
+                views: {
+                    'sidebar@': {
+                        templateUrl: 'views/sidebar.html'
+                    },
+                    'content@': {
+                        //templateUrl: 'views/app.html'
+                    }
+                }
+            })
+            .state('app.home', {
+                url: '',
                 pageDesc: 'AngularJS meets ProcessMaker! This is your Home Page!',
                 currentPage: 'Home',
-                templateUrl: 'views/home.html'
+                views: {
+                    'content@': {
+                        controller: 'HomeController',
+                        templateUrl: 'views/home.html'
+                    }
+                }
             })
-
-            .state('newprocess', {
-                url: '/newprocess',
-                controller: 'NewprocessCtrl',
-                pageDesc: 'AngularJS meets ProcessMaker! This is your New Process Page!',
-                currentPage: 'New Process',
-                templateUrl: 'views/newprocess.html'
-            })
-            .state('newcase', {
-                url: '/newcase',
-                controller: 'NewcaseCtrl',
-                pageDesc: 'AngularJS meets ProcessMaker! This is your New Case Page!',
-                currentPage: 'New Case',
-                templateUrl: 'views/newcase.html'
-            })
-            .state('opencase', {
-                url: '/opencase',
-                controller: 'DynaformCtrl',
-                pageDesc: 'AngularJS meets ProcessMaker! This is your Dynaform Page!',
-                currentPage: 'Dynaform',
-                templateUrl: 'views/dynaform.html'
-            })
-            .state('inbox', {
+            .state('app.inbox', {
                 url: '/inbox',
-                controller: 'InboxCtrl',
                 pageDesc: 'AngularJS meets ProcessMaker! This is your Inbox Page!',
                 currentPage: 'Inbox',
-                templateUrl: 'views/inbox.html'
+                views: {
+                    'content@': {
+                        controller: 'InboxController',
+                        templateUrl: 'views/inbox.html'
+                    }
+                }
             })
-            .state('draft', {
+            .state('app.draft', {
                 url: '/draft',
-                controller: 'DraftCtrl',
                 pageDesc: 'AngularJS meets ProcessMaker! This is your Draft Page!',
                 currentPage: 'Draft',
-                templateUrl: 'views/draft.html'
+                views: {
+                    'content@': {
+                        controller: 'DraftController',
+                        templateUrl: 'views/draft.html'
+                    }
+                }
             })
-            .state('participated', {
+            .state('app.newprocess', {
+                url: '/newprocess',
+                pageDesc: 'AngularJS meets ProcessMaker! This is your New Process Page!',
+                currentPage: 'New Process',
+                views: {
+                    'content@': {
+                        controller: 'NewprocessController',
+                        templateUrl: 'views/newprocess.html'
+                    }
+                }
+            })
+            .state('app.newcase', {
+                url: '/newcase',
+                pageDesc: 'AngularJS meets ProcessMaker! This is your New Case Page!',
+                currentPage: 'New Case',
+                views: {
+                    'content@': {
+                        controller: 'NewcaseController',
+                        templateUrl: 'views/newcase.html'
+                    }
+                }
+            })
+            .state('app.opencase', {
+                url: '/opencase',
+                pageDesc: 'AngularJS meets ProcessMaker! This is your Dynaform Page!',
+                currentPage: 'Dynaform',
+                views: {
+                    'content@': {
+                        controller: 'DynaformController',
+                        templateUrl: 'views/dynaform.html'
+                    }
+                }
+            })
+            .state('app.participated', {
                 url: '/participated',
-                controller: 'ParticipatedCtrl',
                 pageDesc: 'AngularJS meets ProcessMaker! This is your Participated Page!',
                 currentPage: 'Participated',
-                templateUrl: 'views/participated.html'
-            });
+                views: {
+                    'content@': {
+                        controller: 'ParticipatedController',
+                        templateUrl: 'views/participated.html'
+                    }
+                }
+            })
+
+        ;
 
         $locationProvider.html5Mode(true);
 
