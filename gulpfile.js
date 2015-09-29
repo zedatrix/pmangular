@@ -18,6 +18,7 @@ gulp.task('default', ['build', 'templates'], function(){
 });
 gulp.task('templates', function(){
 	return gulp.src('./src/views/**/*.html')
+		.pipe(replace('$$WelcomeMessage$$', config.WelcomeMessage))
 	.pipe(gulp.dest('./dist/views'));
 });
 gulp.task('build', function () {

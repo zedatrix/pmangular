@@ -15,7 +15,7 @@ angular.module('pmAngular')
                         templateUrl: 'views/sidebar.html'
                     },
                     'content@': {
-                        //templateUrl: 'views/app.html'
+                        templateUrl: 'views/app.html'
                     }
                 }
             })
