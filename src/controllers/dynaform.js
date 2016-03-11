@@ -7,7 +7,7 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('DynaformController', function ($scope, $location, $localStorage, API) {
+.controller('DynaformController', function ($scope, $location, $state, $localStorage, API, Message) {
 
         //Instantiate the dynaform object so that we can assign properties to it
         $scope.dynaform = {};
@@ -17,6 +17,13 @@ angular.module('pmAngular')
         API.call(function(response){
             //Get the first object/form for the demo application
             //In a real world example you would have to build logic at this point to
+            //Check if there is a form associated with this step
+            if( ! response.data.length > 0 ){
+                Message.setMessageType('danger');
+                Message.setMessageText('$$NoStepToDisplay$$');
+                return $state.go('app.home');
+
+            }
             //Display the appropriate steps
             //Assign the dynaform uid / step uid to localStorage for persistence
             $localStorage.step_uid_obj = response.data[0].step_uid_obj;

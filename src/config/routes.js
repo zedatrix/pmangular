@@ -2,7 +2,7 @@ angular.module('pmAngular')
     .config(['$locationProvider', '$httpProvider', '$browserProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $httpProvider, $browserProvider, $stateProvider, $urlRouterProvider){
         //Configure the url routes, this is basically the navigation of the app
         //For each route we define it's associated: template, controller, template variables: page name and description
-        $urlRouterProvider.otherwise('/app');
+        $urlRouterProvider.otherwise('/app/home');
 
         $stateProvider
             .state('app', {
@@ -20,7 +20,7 @@ angular.module('pmAngular')
                 }
             })
             .state('app.home', {
-                url: '',
+                url: '/home',
                 pageDesc: 'AngularJS meets ProcessMaker! This is your Home Page!',
                 currentPage: 'Home',
                 views: {

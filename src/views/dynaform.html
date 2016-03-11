@@ -13,23 +13,46 @@
                         <form id="my_dynaform">
                             <fieldset>
                                 <div class="form-group" ng-repeat="row in dynaform.fields">
-                                    <span ng-repeat="field in row" ng-if="field.type!=='submit' && field.type" class="span{{field.colSpan}}">
-                                        <label for="{{field.name}}">{{field.label}}</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="{{field.name}}" name="{{field.name}}" placeholder="{{field.hint}}">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-pencil"></span>
+                                    <span ng-repeat="field in row" class="span{{field.colSpan}}">
+                                        <div ng-if="field.type=='title'">
+                                            <h2>{{field.label}}</h2>
+                                        </div>
+                                        <div ng-if="field.type=='subtitle'">
+                                            <h3>{{field.label}}</h3>
+                                        </div>
+                                        <div ng-if="field.type=='textarea'">
+                                            ﻿<textarea name="{{field.name}}" class='form-control' placeholder="{{field.placeholder}}" rows="3"></textarea>
+                                        </div>
+                                        <div ng-if="field.type=='dropdown'">
+                                            <select name="{{field.name}}" class="form-control">
+                                                <option ng-repeat="opt in field.options" name="{{opt.value}}">{{opt.label}}</option>
+                                            </select>
+                                        </div>
+                                        <div class='radio' ng-if="field.type=='radio'">
+                                            ﻿<div>
+                                                <label>
+                                                    <input name="{{field.name}}" type="radio">
+                                                </label>
+                                            </div>";
+                                        </div>
+                                        <div ng-if="field.type=='text'">
+                                            <label for="{{field.name}}">{{field.label}}</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="{{field.name}}" name="{{field.name}}" placeholder="{{field.hint}}">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="form-actions center" ng-if="field.type=='submit'">
+                                        ﻿﻿<button class='btn btn-small btn-success' type='submit' ng-click="submitCase()">
+                                            {{field.label}}
+                                            <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                                            </button>
                                         </div>
                                     </span>
                                 </div>
                             </fieldset>
-                            <div class="form-actions center">
-                                <button class="btn btn-small btn-success" ng-click="submitCase()">
-                                    {{dynaform.submit.label}}
-                                    <i class="icon-arrow-right icon-on-right bigger-110"></i>
-                                </button>
-                            </div>
                         </form>
                     </div>
                 </div>

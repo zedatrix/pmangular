@@ -7,7 +7,7 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('RootController', function RootCtrl($rootScope, $scope, $location, $localStorage, $state, $http, API, appTitle, genericHeaders, activeMenuItems, api_url, AccessToken){
+.controller('RootController', function RootCtrl($rootScope, $scope, $location, $localStorage, $state, $http, API, Message, appTitle, genericHeaders, activeMenuItems, api_url, AccessToken){
     //Define the column names for the grids. In this case, we are creating global columns, but you could just redefine this array on any controller
     //To overwrite them for a specific page
     $scope.gridHeaders = genericHeaders;
@@ -48,41 +48,40 @@ angular.module('pmAngular')
     });
     //When the user logs in, we do some things on this event
     $rootScope.$on('oauth:login', function(event, token){
-        //This is EXTREMELY important - The whole UI is rendered based on if this is an acces_token
+        //This is EXTREMELY important - The whole UI is rendered based on if this is an access_token
         //So, we assign the scopes accessToken to the token
         //If the user is not logged in, the token object will be undefined
         //If the user IS logged in, the token object will hold the token information
         //E.g. access_token, refresh_token, expiry etc
         $localStorage.accessToken = token.access_token;
+        //Display the default message
+        Message.setMessageText('$$WelcomeMessage$$');
+        Message.setMessageType('success');
+        return $state.go('app.home');
     });
     $rootScope.$on('oauth:loggedOut', function(event, token){
-        //The user has logged out, so we destroy the access_token
-        //Because of Angulars awesome live data binding, this automatically renders the view innate
-        $localStorage.accessToken = null;
-        //Destory the AccessToken object
-        AccessToken.destroy();
-        //Set the pages name to an unauthorized message
-        $scope.currentPage = 'Please Login.';
-        //Set the pages description to an unauthorized message
-        $scope.pageDesc = '$$DefaultWelcomeMessage$$';
-        //Redirect the user back to the home page
-        $state.go('app.home');
+        //Destroy the session
+        $scope.destroySession();
     });
-    //When the user logs out, we do some things on this event
+    /*//When the user logs out, we do some things on this event
     $rootScope.$on('oauth:logout', function(){
+        //Destroy the session
+        $scope.destroySession();
+    });*/
+
+    $scope.destroySession = function(){
         //The user has logged out, so we destroy the access_token
         //Because of Angulars awesome live data binding, this automatically renders the view innate
         $localStorage.accessToken = null;
         //Destory the AccessToken object
         AccessToken.destroy();
         //Set the pages name to an unauthorized message
-        $scope.currentPage = 'Please Login.';
+        $scope.currentPage = 'Home';
         //Set the pages description to an unauthorized message
-        $scope.pageDesc = '$$DefaultWelcomeMessage$$';
+        $scope.pageDesc = 'AngularJS meets ProcessMaker! This is your Home Page!';
         //Redirect the user back to the home page
-        $state.go('app.home');
-    });
-
+        return $state.go('app.home');
+    };
     /**
      * @author ethan@colosa.com
      * @name openCase
@@ -91,10 +90,6 @@ angular.module('pmAngular')
      * @param delIndex - required - the delegation index of the current application that you are opening
      */
     $scope.openCase = function(app_uid, delIndex){
-        //Hide the view of the cases list so that we can display the form
-        $('#cases-table').hide();
-        //Show the view of the form
-        $('#form-area').show();
         API.setRequestType('cases/'+app_uid);
         API.call(function(response){
             if( $(response.data).size() > 0 ){
@@ -109,8 +104,8 @@ angular.module('pmAngular')
                 $localStorage.app_uid = app_uid;
                 //The delegation index of the application
                 $localStorage.delIndex = delIndex;
-                //Redirect the user to the opencase form where we will display the dynaform
-                $location.path('/opencase');
+                //Call the open case state and transition to it
+                $state.go('app.opencase');
             }
         });
     };

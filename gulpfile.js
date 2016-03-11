@@ -18,8 +18,8 @@ gulp.task('default', ['build', 'templates'], function(){
 });
 gulp.task('templates', function(){
 	return gulp.src('./src/views/**/*.html')
-		.pipe(replace('$$WelcomeMessage$$', config.WelcomeMessage))
-		.pipe(replace('$$DefaultWelcomeMessage$$', config.DefaultWelcomeMessage))
+/*		.pipe(replace('$$WelcomeMessage$$', config.WelcomeMessage))
+		.pipe(replace('$$DefaultWelcomeMessage$$', config.DefaultWelcomeMessage))*/
 	.pipe(gulp.dest('./dist/views'));
 });
 gulp.task('build', function () {
@@ -72,6 +72,8 @@ gulp.task('build', function () {
 		  		'./src/services/ng-oauth.js',
 		  		'./src/services/api.js',
 		  		'./src/services/ngstorage.js',
+		  		'./src/services/message.js',
+		  		'./src/directives/message.js',
 		  		'./src/controllers/*.js'
 		  		])
 			  	.pipe(sourcemaps.init())
@@ -93,6 +95,7 @@ gulp.task('build', function () {
 				.pipe(replace('$$NoCasesMessage$$', config.NoCasesMessage))
 				.pipe(replace('$$FormSubmittedMessage$$', config.FormSubmittedMessage))
 				.pipe(replace('$$DefaultWelcomeMessage$$', config.DefaultWelcomeMessage))
+				.pipe(replace('$$NoStepToDisplay$$', config.NoStepToDisplay))
 			  	.pipe(sourcemaps.write())
 				.pipe(gulp.dest('./dist'));
 
@@ -119,6 +122,7 @@ gulp.task('build', function () {
 			  	'./public/assets/styles/ace-responsive.min.css',
 			  	'./public/assets/styles/ace-skins.min.css',
 			  	'./public/assets/styles/ace-ie.min.css',
+			  	'./public/assets/styles/main.css',
 			  	])
 			  	.pipe(sourcemaps.init())
 			  	.pipe(concat('customStyles.css'))
@@ -160,6 +164,7 @@ gulp.task('build', function () {
 
 		  	var appStream = gulp.src([
 		  		'./src/services/*.js',
+		  		'./src/directives/*.js',
 		  		'./src/app.js',
 		  		'./src/config/*.js',
 		  		'./src/controllers/*.js'
@@ -194,6 +199,7 @@ gulp.task('build', function () {
 			  	'./public/assets/styles/ace-responsive.min.css',
 			  	'./public/assets/styles/ace-skins.min.css',
 			  	'./public/assets/styles/ace-ie.min.css',
+			  	'./public/assets/styles/main.css',
 			  	])
 			  	.pipe(uglify())
 				.pipe(sourcemaps.init())

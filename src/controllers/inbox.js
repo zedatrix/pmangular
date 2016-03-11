@@ -9,7 +9,6 @@
 angular.module('pmAngular')
 .controller('InboxController', function (API, $scope){
         //Set the requestType
-        console.log('here');
         API.setRequestType('cases');
         //Make the API call to get the list of cases in To Do status
         API.call(function(response){
