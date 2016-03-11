@@ -14,15 +14,14 @@
 
 This app is uses the following tools:
 
-[NodeJS](http://nodejs.org/)
-[Yeoman](http://yeoman.io/)
+[NodeJS](https://nodejs.org/en/)
 [AngularJS](https://angularjs.org/)
 [jQuery](http://jquery.com/)
 [Bootstrap](http://getbootstrap.com/)
 
 This app uses the following angular addons:
 angular-bootstrap
-angular-route
+ui-router
 angular-ui-bootstrap
 ngOauth (modified version)
 ngStorage
@@ -31,38 +30,24 @@ ngStorage
 
 To install:
 
-Clone/fork the repo: [https://github.com/zeddie/pmangular.git](https://github.com/zeddie/pmangular.git)
+Clone/fork the repo: [https://github.com/ethnp/pmangular.git](https://github.com/ethnp/pmangular.git)
 
-You will need [NodeJS](http://nodejs.org/) installed.
+You will need [NodeJS](http://nodejs.org/) in order to install dependencies and build files etc.
 
-Install yeoman:
-```
-$ npm install -g yo
-```
 
 Install npm dependencies:
 ```
 $ npm install
 ```
 
-Install bower dependencies:
-```
-$ bower install
-```
-
 ## Connecting to ProcessMaker
 
-You can use the settings defined to connect to a demo instance of ProcessMaker.
+You will need to have created a REST API application in ProcessMaker.
 
-Username: **demouser**
+You can find instructions on how to do so [here](http://wiki.processmaker.com/OAuth_2.0).
 
-Password: **12345**
+You can download ProcessMaker from [here](http://www.processmaker.com/download-processmaker-landing-page?utm_source=pmangulargithub).
 
-If you want to connect to your own ProcessMaker 3.0, you will need to follow the wiki steps outlined here: [ProcessMaker Wiki](http://3x.wiki.processmaker.com/index.php/OAUTH_2.0).
-
-You can download the BETA version of ProcessMaker 3.0 from [here](http://sourceforge.net/projects/processmaker/files/ProcessMaker/3.0/3.0-Beta/).
-
-The app is already configured to connect with the ProcessMaker 3.0 OAuth 2.0 flow, you just need to create the app on your instance and then swap the ```site```, ```redirect_uri```, ```client_id``` and the ```client_secret``` to that which you will receive when you create your app.
-
+Feel free to send me a DM here or on twitter and I will happily help you out!
 
 Happy ProcessMakering!!!
