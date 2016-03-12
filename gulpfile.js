@@ -97,6 +97,8 @@ gulp.task('build', function () {
 				.pipe(replace('$$FormSubmittedMessage$$', config.FormSubmittedMessage))
 				.pipe(replace('$$DefaultWelcomeMessage$$', config.DefaultWelcomeMessage))
 				.pipe(replace('$$NoStepToDisplay$$', config.NoStepToDisplay))
+				.pipe(replace('$$NoProcessesToDisplayMessage$$', config.NoProcessesToDisplayMessage))
+				.pipe(replace('$$NoStartingTasksToDisplayMessage$$', config.NoStartingTasksToDisplayMessage))
 			  	.pipe(sourcemaps.write())
 				.pipe(gulp.dest('./dist'));
 

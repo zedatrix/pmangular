@@ -7,7 +7,7 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('NewcaseController', function ($scope, $http, $location, $localStorage, API){
+.controller('NewcaseController', function ($state, $scope, $http, $location, $localStorage, API){
         //Assign the list of starting tasks from localStorage to the scope so that we can render it in the view
         $scope.taskList = $localStorage.startingTasks;
         /**
@@ -27,7 +27,7 @@ angular.module('pmAngular')
                 //If the length of the data returned from the API is greater than 0, then we know we're in business!
                 if( $(response.data).size() > 0 ){
                     //Send the user to the opencase page, there we display the dynaform
-                    $location.url('/opencase');
+                    $state.go('app.opencase');
                     //Set the localStorage application unique identifier to that which was returned from the server
                     $localStorage.app_uid = response.data.app_uid;
                     //Set the localStorage application number to that which was returned from the server
