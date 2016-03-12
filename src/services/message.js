@@ -7,8 +7,12 @@
 'use strict';
 //Service to pass user interface messages
 angular.module('pmAngular').
-service('Message', function($rootScope, $localStorage){
+service('Message', function($localStorage){
     //Define the functionality of the service
+    $localStorage.message = {
+        text: '',
+        type: ''
+    };
     return {
         /**
          * @author ethan@colosa.com
@@ -46,7 +50,6 @@ service('Message', function($rootScope, $localStorage){
          */
         setMessageText: function(value){
             $localStorage.message.text = value;
-            $rootScope.$broadcast('MessageNewMessage', {message: $localStorage.message});
         },
         /**
          * @author ethan@colosa.com

@@ -21,24 +21,24 @@
                                             <h3>{{field.label}}</h3>
                                         </div>
                                         <div ng-if="field.type=='textarea'">
-                                            ﻿<textarea name="{{field.name}}" class='form-control' placeholder="{{field.placeholder}}" rows="3"></textarea>
+                                            ﻿<textarea name="{{field.name}}" class='form-control' placeholder="{{field.placeholder}}" rows="3" ng-model="fieldData[field.name]"></textarea>
                                         </div>
                                         <div ng-if="field.type=='dropdown'">
-                                            <select name="{{field.name}}" class="form-control">
-                                                <option ng-repeat="opt in field.options" name="{{opt.value}}">{{opt.label}}</option>
+                                            <select name="{{field.name}}" ng-model="fieldData[field.name]" class="form-control">
+                                                <option ng-repeat="opt in field.options" value="{{opt.value}}">{{opt.label}}</option>
                                             </select>
                                         </div>
                                         <div class='radio' ng-if="field.type=='radio'">
                                             ﻿<div>
                                                 <label>
-                                                    <input name="{{field.name}}" type="radio">
+                                                    <input name="{{field.name}}" type="radio" ng-model="fieldData[field.name]">
                                                 </label>
                                             </div>";
                                         </div>
                                         <div ng-if="field.type=='text'">
                                             <label for="{{field.name}}">{{field.label}}</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="{{field.name}}" name="{{field.name}}" placeholder="{{field.hint}}">
+                                                <input type="text" class="form-control" id="{{field.name}}" name="{{field.name}}" placeholder="{{field.hint}}" ng-model="fieldData[field.name]">
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </div>

@@ -12,7 +12,6 @@
 //Create the app
 angular.module('pmAngular', [
     'oauth',
-    //'ngRoute',              //application view and routing service
     'ui.bootstrap',          //Bootstrap framework for AngularJS
     'ui.router'
 ]);

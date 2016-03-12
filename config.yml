@@ -6,7 +6,7 @@ AppTitle: pmAngular
 WelcomeMessage: Welcome to the Angular JS ProcessMaker Front End! You are successfully logged in!
 DefaultWelcomeMessage: Welcome to pmAngular. You need to log in with your ProcessMaker account in order to continue.
 NoCasesMessage: There are no cases to display. Please choose another folder.
-FormSubmittedMessage: Thank you for submitting the case. You may continue with other work now!
+FormSubmittedMessage: Case submitted successfully!
 NoProcessesToDisplayMessage: There are no processes to display.
 NoStepToDisplay: There is no step to display. This is likely due to a faulty process design.
 OauthButton:

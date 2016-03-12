@@ -7,7 +7,7 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-.controller('DynaformController', function ($scope, $location, $state, $localStorage, API, Message) {
+    .controller('DynaformController', function ($scope, $location, $state, $localStorage, API, Message) {
 
         //Instantiate the dynaform object so that we can assign properties to it
         $scope.dynaform = {};
@@ -53,47 +53,39 @@ angular.module('pmAngular')
             //index
             $localStorage.delIndex = ($localStorage.delIndex === null) ? 1 : $localStorage.delIndex;
             //Instantiate an object in order to use to create the object that we will be sending to ProcessMaker
-            //In the .each loop
-            var dataObj = {};
-            //Here we get all the input elements on the form and put them into the object created above
-            //ToDo support for other elements besides input e.g. select, textarea, radio, check
-            $('form').find(':input').each(function(){
-                //We first check to make sure that the field has a proper id
-                //Then we assign to the object a key of the field id with the value of the field
-                if ( typeof($(this).attr('id')) !== 'undefined' ) dataObj[$(this).attr('id')] = $(this).val();
-            });
             //Set the requestType
             API.setRequestType('cases/'+$localStorage.app_uid+'/variable');
             //Set the params for the put request
-            API.setParams(dataObj);
+            API.setParams($scope.fieldData);
             //Make a call to the API to submit the data to be saved to the cases variables
             API.call(function(response){
-                //If the response is not equal to 0 than we know the request was successful
-                if(response!==0){
-                    //Set the requestType
-                    API.setRequestType('cases/'+$localStorage.app_uid+'/route-case');
-                    //Set the params for the put request
-                    API.setParams({'del_index': $localStorage.delIndex, 'Content-Type': 'application/json;charset=utf-8'});
-                    //Make a call to the API to route the case to the next task
-                    //Something to note for production environments:
-                    //This specific workflow was a sequential workflow. For production environemnts you may need to add
-                    //Custom logic for interpreting the routing procedure for other types of routing rules
-                    API.call(function(){
-                        //Reset the delegation index since we have submitted the form
-                        $localStorage.delIndex = null;
-                        //Reset the applications unique identifier since we have submitted the form
-                        $localStorage.app_uid = null;
-                        //Send the user back to their home inbox since they have submitted the form
-                        $location.url('/home');
-                        //Display a user friendly message to the user that they have successfully submitted the case
-                        $localStorage.message = '$$FormSubmittedMessage$$';
-                    },
-                    //Define the request type, in this case, PUT
-                    'PUT');
-                }
-            },
-            //Define the request type, in this case, PUT
-            'PUT');
+                    //If the response is not equal to 0 than we know the request was successful
+                    if(response!==0){
+                        //Set the requestType
+                        API.setRequestType('cases/'+$localStorage.app_uid+'/route-case');
+                        //Set the params for the put request
+                        API.setParams({'del_index': $localStorage.delIndex, 'Content-Type': 'application/json;charset=utf-8'});
+                        //Make a call to the API to route the case to the next task
+                        //Something to note for production environments:
+                        //This specific workflow was a sequential workflow. For production environemnts you may need to add
+                        //Custom logic for interpreting the routing procedure for other types of routing rules
+                        API.call(function(){
+                                //Reset the delegation index since we have submitted the form
+                                $localStorage.delIndex = null;
+                                //Reset the applications unique identifier since we have submitted the form
+                                $localStorage.app_uid = null;
+                                //Send the user back to their home inbox since they have submitted the form
+                                $location.url('/home');
+                                //Display a user friendly message to the user that they have successfully submitted the case
+                                Message.setMessageText('$$FormSubmittedMessage$$');
+                                Message.setMessageType('success');
+                            },
+                            //Define the request type, in this case, PUT
+                            'PUT');
+                    }
+                },
+                //Define the request type, in this case, PUT
+                'PUT');
         };
         /**
          * @author ethan@colosa.com
@@ -108,14 +100,7 @@ angular.module('pmAngular')
                 //If the length of the data is greater than 0, we know the request was successful
                 if($(response.data).size() > 0){
                     //Assign the response to a variable for easier use
-                    var data = response.data;
-                    //Loop through all the input elements on the form and populate them with the data retrieved from the API
-                    //ToDo support for other elements besides input e.g. select, textarea, radio, check
-                    $('form').find(':input').each(function(){
-                        //We first check to make sure that the field has a proper id
-                        //Then we assign to the field's value with the associated field returned from the API
-                        if ( typeof($(this).attr('id')) !== 'undefined' ) $(this).val(data[$(this).attr('id')]);
-                    });
+                    $scope.fieldData = response.data;
                 }
             });
         };

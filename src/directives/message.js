@@ -1,7 +1,7 @@
 'use strict';
 //Service to handle displaying user messages
 angular.module('pmAngular').
-directive('userMessage', function($rootScope, $compile, Message) {
+directive('userMessage', function(Message) {
     return {
         restrict: 'E',
         scope: {
@@ -9,7 +9,7 @@ directive('userMessage', function($rootScope, $compile, Message) {
             type: '=type'
         },
         link: function (scope, element, attrs) {
-            console.log(Message.getMessageText());
+            //console.log(Message.getMessageText());
             scope.text = Message.getMessageText();
             scope.type = Message.getMessageType();
         },
