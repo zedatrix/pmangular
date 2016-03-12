@@ -70,6 +70,7 @@ gulp.task('build', function () {
 		  		'./src/config/variables.js',
 		  		//'./src/services/*.js',
 		  		'./src/services/ng-oauth.js',
+		  		'./src/services/helpers.js',
 		  		'./src/services/api.js',
 		  		'./src/services/ngstorage.js',
 		  		'./src/services/message.js',

@@ -7,10 +7,11 @@
 /*global $:false */
 'use strict';
 angular.module('pmAngular')
-    .controller('DynaformController', function ($scope, $location, $state, $localStorage, API, Message) {
+    .controller('DynaformController', function ($scope, $location, $state, $localStorage, API, Message, Helpers) {
 
         //Instantiate the dynaform object so that we can assign properties to it
         $scope.dynaform = {};
+
         //Set the requestType
         API.setRequestType('project/'+$localStorage.pro_uid+'/activity/'+$localStorage.act_uid+'/steps');
         //Make the API call to get the list of steps
@@ -29,7 +30,7 @@ angular.module('pmAngular')
             $localStorage.step_uid_obj = response.data[0].step_uid_obj;
             //Set the requestType
             API.setRequestType('project/'+$localStorage.pro_uid+'/dynaform/'+$localStorage.step_uid_obj);
-            //Make a call to the API requesting dynaform definition in order to render the form
+                //Make a call to the API requesting dynaform definition in order to render the form
             API.call(function(response){
                 var dynaformContent = JSON.parse(response.data.dyn_content);
                 $localStorage.dyn_uid = response.data.dyn_uid;
@@ -39,7 +40,14 @@ angular.module('pmAngular')
                 $scope.dynaform.fields = fields;
                 $scope.dynaform.submit = fields[fields.length-1][0];
                 $scope.loadCaseData();
+            }, 'GET', undefined, function(e){
+                Helpers.showMessageArea('#start-case-area',
+                    'There has been a problem with your request. Please try again later.'+
+                    '</p><p>'+
+                    'Error Message: <pre>'+ JSON.stringify(e, null, '\t')+
+                    '</pre></p>', true);
             });
+
         });
         /**
          * @author ethan@colosa.com

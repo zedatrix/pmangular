@@ -17,18 +17,10 @@ angular.module('pmAngular')
         //If the resulting data length is equal to 0, then we display a user friendly
         //Message stating that there is nothing to display
         if($scope.casesList.length===0){
-            /**
-             * Todo create some type of directive/service to render messages in the application with just a quick function call
-             */
-            $('#cases-table').html(
-                '<div class="alert alert-block alert-info">'+
-                    '<button type="button" class="close" data-dismiss="alert">'+
-                    '<i class="icon-remove"></i>'+
-                    '</button>'+
-                    '<i class="icon-ok blue"></i>'+
-                    '$$NoCasesMessage$$'+
-                '</div>'
-            );
+            //#cases-table is the area on the page we are rendering
+            //The list of cases, so we are setting it's HTML equal to the display message
+            Helpers.showMessageArea('#cases-table',
+                '$$NoCasesMessage$$', true);
         }
     });
 });

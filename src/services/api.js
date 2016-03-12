@@ -59,23 +59,26 @@ service('API', function($http, api_url){
          * @param requestType - optional
          * @param method - optional
          */
-        call: function(callback, method, requestType){
+        call: function(callback, method, requestType, errHandler){
 
             //Define optional params so that only callback needs to be specified when this function is called
             //Assign default value og GET to the method that we are requesting
 
-            if( typeof ( method ) === 'undefined') method = 'GET';
+            method = (angular.isUndefined(method))? 'GET' : method;
 
             //Assign the default value of the request type to the getter method.
             //This is the way to use the service. Set the setRequestType to the url endpoint you want to hit
             //For example, if you want a list of projects/process, in your controller do this before you call this method:
             //API.setRequestType('projects');
 
-            if( typeof ( requestType ) === 'undefined') requestType = this.getRequestType();
+            if( angular.isUndefined(requestType)){
+                requestType = this.getRequestType();
+                //Handle if there was no request type defined
+                if(angular.isUndefined(requestType)) return 'No request type defined.';
 
-            //Handle if there was no request type defined
+            }
 
-            if( typeof ( requestType ) === 'undefined') return 'Invalid requestType or no requestType defined.';
+            errHandler = (angular.isUndefined(errHandler))?function(){} : errHandler;
 
             /*
              Switch based on method type in order to request the right type of api
@@ -92,19 +95,19 @@ service('API', function($http, api_url){
                     $http.get(api_url+requestType).
                         then(function(response){
                             if(callback) callback(response);
-                        });
+                        }).catch(errHandler);
                     break;
                 case 'POST':
                     $http.post(api_url+requestType, params).
                         then(function(response){
                             if(callback) callback(response);
-                        });
+                        }).catch(errHandler);
                     break;
                 case 'PUT':
                     $http.put(api_url+requestType, params).
                         then(function(response){
                             if(callback) callback(response);
-                        });
+                        }).catch(errHandler);
                     break;
                 default:
                     console.log('Invalid or no method defined.');
