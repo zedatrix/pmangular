@@ -1,0 +1,21 @@
+<table id="cases-table" class="table table-striped table-bordered table-hover inboxTable">
+    <thead>
+    <tr>
+        <th ng-repeat="th in gridHeaders">{{th.title}}</th>
+    </tr>
+    </thead>
+    <tr class="case_row" ng-repeat="case in casesList" ng-click="openCase(case.app_uid, case.del_index)">
+        <td style="display: none;">{{case.app_uid}}</td>
+        <td style="display: none;">{{case.pro_uid}}</td>
+        <td>{{case.app_number}}</td>
+        <td>{{case.app_pro_title}}</td>
+        <td>{{case.app_tas_title}}</td>
+        <td>{{case.app_del_previous_user}}</td>
+        <td>{{case.del_task_due_date}}</td>
+        <td>{{case.app_update_date}}</td>
+        <td>{{case.del_priority}}</td>
+    </tr>
+    <tbody>
+
+    </tbody>
+</table>
