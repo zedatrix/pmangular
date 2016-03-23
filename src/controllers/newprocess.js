@@ -42,13 +42,7 @@ angular.module('pmAngular')
                                 prj_name: project.prj_name,
                                 prj_uid: project.prj_uid,
                                 prj_starting_tasks: prj_response.data
-                                /*prj_starting_tasks: {
-                                    act_uid: prj_response.data.act_uid,
-                                    act_name: prj_response.data.act_name
-                                }*/
                             };
-                            //console.debug(project.prj_uid);
-                            //console.debug($scope.proList);
                         }
                     });
                 });
@@ -67,22 +61,5 @@ angular.module('pmAngular')
             $localStorage.pro_uid = pro_uid;
             //Change the url so that the new case page is displayed
             $state.go('app.newcase');
-            /*//Set the requestType
-            API.setRequestType('project/'+$localStorage.pro_uid+'/starting-tasks');
-            //Call to the REST API to list all available starting tasks for the specified process
-            API.call(function(response){
-                //Send the list of new cases to localStorage so that the NewcaseCtrl controller can use it
-                //If the resulting data length is equal to 0, then we display a user friendly
-                //Message stating that there is nothing to display
-                if(response.data.length===0){
-                    //#new-process-area is the area on the page we are rendering
-                    //The list of processes, so we are setting it's HTML equal to the display message
-                    return Helpers.showMessageArea('#new-process-area',
-                        '$$NoStartingTasksToDisplayMessage$$', true);
-                }
-                $localStorage.startingTasks = response.data;
-                //Change the url so that the new case page is displayed
-                $state.go('app.newcase');
-            });*/
         };
     });

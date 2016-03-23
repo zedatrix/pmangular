@@ -11,7 +11,6 @@ angular.module('pmAngular')
         //Assign the list of starting tasks from localStorage to the scope so that we can render it in the view
         $scope.proList = $localStorage.proList;
         $scope.pro_uid = $localStorage.pro_uid;
-        //console.log($scope.proList);
         /**
          * @author ethan@colosa.com
          * @name startCase
