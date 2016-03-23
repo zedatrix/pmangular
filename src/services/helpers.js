@@ -9,15 +9,16 @@
 angular.module('pmAngular').
 service('Helpers', function(){
     return {
-        showMessageArea: function(id, msg, debug){
+        showMessageArea: function(id, msg, level, debug){
             debug = (angular.isUndefined(debug))? false : debug;
+            level = (angular.isUndefined(level))? 'info' : level;
             if(debug) console.log("ID: "+id+"\n\r"+"Message: "+msg);
             $(id).html(
-                '<div class="alert alert-block alert-info">'+
+                '<div class="alert alert-block alert-'+level+'">'+
                 '<button type="button" class="close" data-dismiss="alert">'+
                 '<i class="icon-remove"></i>'+
                 '</button>'+
-                '<p><i class="icon-ok blue"></i> '+
+                '<p> '+
                 msg+
                     '</p></div>'
             );

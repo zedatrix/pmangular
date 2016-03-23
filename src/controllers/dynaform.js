@@ -11,7 +11,7 @@ angular.module('pmAngular')
 
         //Instantiate the dynaform object so that we can assign properties to it
         $scope.dynaform = {};
-
+console.log('here');
         //Set the requestType
         API.setRequestType('project/'+$localStorage.pro_uid+'/activity/'+$localStorage.act_uid+'/steps');
         //Make the API call to get the list of steps
@@ -45,7 +45,7 @@ angular.module('pmAngular')
                     'There has been a problem with your request. Please try again later.'+
                     '</p><p>'+
                     'Error Message: <pre>'+ JSON.stringify(e, null, '\t')+
-                    '</pre></p>', true);
+                    '</pre></p>', 'danger');
             });
 
         });
