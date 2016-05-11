@@ -40,6 +40,11 @@ Install npm dependencies:
 $ npm install
 ```
 
+Build project with gulp:
+```
+$ gulp default
+```
+
 ## Connecting to ProcessMaker
 
 You will need to have created a REST API application in ProcessMaker.
