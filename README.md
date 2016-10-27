@@ -42,12 +42,12 @@ $ npm install -g bower
 ```
 $ npm install
 ```
+Configure the config.yml in the root directory, based on your environment.
 
-Build project with gulp:
+Then build the project with gulp:
 ```
 $ gulp default
 ```
-Configure the config.yml in the root directory, based on your environment.
 
 ## Connecting to ProcessMaker
 
