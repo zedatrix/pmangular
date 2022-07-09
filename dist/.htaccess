@@ -1,6 +1,0 @@
-RewriteEngine On
-Options FollowSymLinks
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /repos/pmangular/dist/index.html [NC,L]
