@@ -1,0 +1,17 @@
+<div class="uk-section uk-padding-remove uk-section-default">
+    <div class="uk-container uk-padding-remove">
+        <nav uk-navbar>
+            <div class="uk-navbar-left">
+                <a [routerLink]="['/']" class="uk-logo"><img src="https://www.processmaker.com/wp-content/uploads/2019/11/logo_processmaker.png"></a>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/']">Dashboard</a></li>
+                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: false}"><a [routerLink]="['/tasks']">Tasks</a></li>
+                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: false}"><a [routerLink]="['/requests']">Requests</a></li>
+                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: false}"><a (click)="authService.logout()">Logout</a></li>
+                </ul>
+            </div>            
+        </nav>
+    </div>
+</div>
