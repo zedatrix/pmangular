@@ -23,6 +23,7 @@ export interface Task {
       title:string,
       type:string,
       config: {
+        
         name: string
       }
     },
