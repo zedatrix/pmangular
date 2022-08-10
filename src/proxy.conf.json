@@ -1,6 +1,6 @@
 {
     "/": {
-        "target": "http://local.processmaker.com",
+        "target": "https://demojc.processmaker.net",
         "secure": false
     }
 }

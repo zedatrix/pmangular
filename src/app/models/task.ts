@@ -5,7 +5,27 @@ export interface Task {
     initiated_at: Date,
     riskchanges_at: Date,
     subprocess_start_event_id: number|null,
-    data: {},
+    data: {
+            name: string,
+            _user:{
+              id: number,
+              fullname: string,
+              avatar: string
+
+            }
+    },
+    requestor: {
+      fullname: string,
+      avatar: string
+    },
+    screen: {
+      id:number,
+      title:string,
+      type:string,
+      config: {
+        name: string
+      }
+    },
     id: number,
     process_id: number,
     process_request_id: number,
@@ -21,4 +41,5 @@ export interface Task {
     process: string,
     process_request: string,
     version_id: number
+
 }

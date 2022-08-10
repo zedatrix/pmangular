@@ -10,7 +10,7 @@ export const environment = {
   production: false,
   apiDomain: '',
   apiPath: '/api/1.0',
-  apiProtocol: 'http://'
+  apiProtocol: 'https://'
 };
 
 /*

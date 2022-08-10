@@ -15,11 +15,11 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService: AuthService, private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
-      instance: ['', Validators.required],
-      clientId: ['', Validators.required],
-      clientSecret: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      instance: ['demojc-se.processmaker.net', Validators.required],
+      clientId: ['11', Validators.required],
+      clientSecret: ['kERirlyY1G4tK0pzG7dtYLmqzJtGc72ARBN4joZZ', Validators.required],
+      username: ['admin', Validators.required],
+      password: ['p4ssw0rdJC!', Validators.required]
     });
   }
 
