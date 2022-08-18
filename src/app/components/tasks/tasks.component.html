@@ -41,46 +41,168 @@
                                 <div *ngIf="selectedTask">
                                     <div class="uk-grid-collapse uk-flex-middle" uk-grid>
 
+                                        <!--Left Side | Screen or Form Info -->
                                         <div class="uk-width-3-5 ">
                                           <div class="uk-card uk-card-default uk-card-body">
-                                            <h5 class="uk-card-title">
+                                            <h6 class="uk-card-title" style="background:#FFDB63;color:#FEFEFE;text-transform:uppercase;padding-left:20px;">
                                               {{ selectedTask?.screen.title }}
-                                            </h5>
-                                            <h5 class="uk-card-title">sasasass
-                                              {{ selectedTask?.screen.config[0].name }}
-                                            </h5>
+                                            </h6>
+                                            <!--<h5 class="uk-card-title">
+                                              {{ selectedTask?.screen.config[0].items[0].config.content }}
+                                            </h5>-->
                                             <!--<textarea class="uk-textarea" rows="10">{{selectedTask?.screen.config.items.config.content }}</textarea>-->
-                                            <textarea class="uk-textarea" rows="10">{{selectedTask?.screen |json }}</textarea>
-                                            <textarea class="uk-textarea" rows="20">{{selectedTask.data | json}}</textarea>
+                                            <!--<div [ngSwitch]="selectedTask?.color">-->
+
+                                            <!--
+                                            <div [ngSwitch]="color">
+                                              <div *ngSwitchCase="'red'" style="color:red;">
+                                                <label for="fname">First name:</label><br>
+                                                <input type="text" id="fname" name="fname"><br>
+                                              </div>
+                                              <h1 *ngSwitchCase="'green'" style="color:green;">Green</h1>
+                                              <h1 *ngSwitchCase="'yellow'" style="color:yellow;">Yellow</h1>
+                                              <h1 *ngSwitchDeafault style="color:black;">Unknow color</h1>
+                                            </div>
+                                            -->
+                                            <div *ngFor="let data of selectedTask?.screen.config[0].items; let j = index;">
+
+
+                                              <!-- Starts creating the Form dynamically -->
+                                              <div [ngSwitch]="selectedTask?.screen.config[0].items[j].component">
+                                                <!-- Label or Text -->
+                                                <div *ngSwitchCase="'FormHtmlViewer'">
+
+                                                  <h6 class="uk-card-subtitle" style="color:#7D5DFB;text-transform:uppercase;">
+                                                    {{selectedTask?.screen.config[0].items[j].config.content}}
+                                                  </h6>
+                                                </div>
+                                                <!-- Multicolumn -->
+                                                <div *ngSwitchCase="'FormMultiColumn'">
+                                                  <div *ngFor="let data of selectedTask?.screen.config[0].items[j].items; let i = index;">
+
+                                                    <div *ngFor="let data of selectedTask?.screen.config[0].items[j].items[i]; let k = index;">
+
+                                                      <div [ngSwitch]="selectedTask?.screen.config[0].items[j].items[i][k].component">
+
+                                                        <!-- Input Text -->
+                                                        <div *ngSwitchCase="'FormInput'">
+                                                          <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].items[i][k].config.label }}</label>
+                                                          <div class="uk-form-controls">
+                                                            <input type="text" class="uk-input" name="selectedTask?.screen.config[0].items[j].items[i][k].config.name">
+                                                          </div>
+                                                        </div>
+
+
+                                                        <!------------------------------------
+                                                        <div *ngIf="selectedTask?.screen.config[0].items[j].items[i][k].config.name == 'lastname'; then thenSection; else elseSection">
+                                                        </div>
+                                                        <ng-template #thenSection>
+                                                           <p>Matches</p>
+                                                        </ng-template>
+                                                        <ng-template #elseSection>
+                                                          <p>Do not match</p>
+                                                        </ng-template>
+                                                        -->
+
+                                                        <!-- TextArea -->
+                                                        <div *ngSwitchCase="'FormTextArea'">
+                                                          <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].items[i][k].config.label }}</label>
+                                                          <div class="uk-form-controls">
+                                                            <textarea class="uk-textarea" name="selectedTask?.screen.config[0].items[j].items[i][k].config.name"></textarea>
+                                                          </div>
+                                                        </div>
+
+                                                      </div>
+                                                    </div>
+
+                                                  </div>
+
+
+
+                                                  <!--<div *ngFor="let data of selectedTask?.screen.config[0].items[1].items">
+
+                                                    {{ selectedTask?.screen.config[0].items[1].items[0][0].component }} sss
+                                                    <div [ngSwitch]="selectedTask?.screen.config[0].items[1].items[0][1].component">
+
+                                                      <div *ngSwitchCase="'FormInput'">
+                                                        IT IS A FormInput | {{ selectedTask?.screen.config[0].items[1].items[0][0].config.name }}
+                                                        <br><label>{{ selectedTask?.screen.config[0].items[1].items[0][0].config.label }}</label>
+                                                        <input type="text" name="selectedTask?.screen.config[0].items[1].items[0][1].config.name">
+
+                                                      </div>
+                                                    </div>
+                                                  </div>-->
+
+                                                </div>
+
+                                                <!-- Input Text -->
+                                                <div *ngSwitchCase="'FormInput'">
+                                                  <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].config.label }}</label>
+                                                  <div class="uk-form-controls">
+                                                    <input type="text" class="uk-input" [value]="selectedTask?.screen.title" name="selectedTask?.screen.config[0].items[j].config.name">
+                                                  </div>
+                                                </div>
+
+                                                <!-- TextArea -->
+                                                <div *ngSwitchCase="'FormTextArea'">
+                                                  <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].config.label }}</label>
+                                                  <div class="uk-form-controls">
+                                                    <textarea class="uk-textarea" [value]="selectedTask?.data.name" name="selectedTask?.screen.config[0].items[j].config.name"></textarea>
+                                                  </div>
+                                                </div>
+                                                <!-- Dropdown -->
+                                                <div *ngSwitchCase="'FormSelectList'">
+                                                  <label class="uk-form-label" style="color:#B7B7B7;">{{ selectedTask?.screen.config[0].items[j].config.label }}</label>
+                                                  <div class="uk-form-controls">
+                                                    <select class="uk-select">
+                                                      <option>Approve</option>
+                                                      <option>Reject</option>
+                                                    </select>
+                                                  </div>
+                                                </div>
+                                                <!-- Button -->
+                                                <div *ngSwitchCase="'FormButton'">
+                                                  <br>
+                                                  <input type="submit" class="uk-button uk-button-primary uk-width-1-1" style="background:#B2DA60;" value="{{ selectedTask?.screen.config[0].items[j].config.label }}">
+                                                </div>
+
+                                              </div>
+
+                                            </div>
+
+                                            <!--<textarea class="uk-textarea" rows="30">{{selectedTask?.screen |json }}</textarea>-->
+                                            <!--<textarea class="uk-textarea" rows="20">{{selectedTask.data | json}}</textarea>-->
                                           </div>
                                         </div>
+
+                                        <!--Right Side | Request and Task Info -->
                                         <div class="uk-width-1-3 uk-background-cover uk-position-relative" style="background:#fff;" uk-height-viewport>
-                                            <h4 class="uk-card-title" style="background:#00cd9C;color:#ffffff;text-transform:capitalize;padding-left:20px;">{{ selectedTask?.advanceStatus }}</h4>
+                                            <h4 class="uk-card-title" style="background:#7D5DFB;color:#ffffff;text-transform:capitalize;padding-left:20px;">{{ selectedTask?.advanceStatus }}</h4>
 
                                             <div class="uk-card uk-card-default uk-card-body">
-
-                                                Assigned To
-                                                <h5 class="uk-card-subtitle">
-                                                  <img src='{{selectedTask?.data._user.avatar}}' width="15%"> {{selectedTask?.data._user.fullname}}
-                                                </h5>
+                                                <h6 class="uk-card-subtitle"><span style="color:#7D5DFB;">Assigned To </span> <br>
+                                                  <img src='{{selectedTask?.data._user.avatar}}' width="15%"><span style="color:#B7B7B7;"> {{selectedTask?.data._user.fullname}}</span>
+                                                </h6>
                                                 <hr>
 
-                                                <h5 class="uk-card-subtitle">Request<br>
-                                                  <img src="https://processmaker-ang.s3.us-west-2.amazonaws.com/request1.png" width="12%"> # {{ selectedTask?.process_request_id }}  {{ selectedRequest?.name }} </h5>
+                                                <h6 class="uk-card-subtitle"> <span style="color:#7D5DFB;">Request</span> <br>
+                                                  <img src="https://processmaker-ang.s3.us-west-2.amazonaws.com/request1.png" width="12%"><span style="color:#B7B7B7;"> # {{ selectedTask?.process_request_id }}  {{ selectedRequest?.name }}</span>
+                                                </h6>
                                                 <hr>
 
-                                                <h5 class="uk-card-subtitle">Task <br>
-                                                  <img src="https://processmaker-ang.s3.us-west-2.amazonaws.com/task1.png" width="12%"> {{ selectedTask?.element_name }}
-                                                </h5>
+                                                <h6 class="uk-card-subtitle"><span style="color:#7D5DFB;"> Task </span><br>
+                                                  <img src="https://processmaker-ang.s3.us-west-2.amazonaws.com/task1.png" width="12%"><span style="color:#B7B7B7;"> {{ selectedTask?.element_name }}</span>
+                                                </h6>
                                                 <hr>
-                                                Requested By
-                                                <h5 class="uk-card-subtitle">
-                                                  <img src='{{selectedTask?.requestor.avatar}}' width="15%"> {{selectedTask?.requestor.fullname}}
-                                                </h5>
+
+                                                <h6 class="uk-card-subtitle"><span style="color:#7D5DFB;"> Requested By </span><br>
+                                                  <img src='{{selectedTask?.requestor.avatar}}' width="15%"><span style="color:#B7B7B7;"> {{selectedTask?.requestor.fullname}}</span>
+                                                </h6>
 
                                             </div>
 
                                         </div>
+
                                     </div>
                                     <div *ngIf="!selectedTask" class="uk-position-absolute uk-position-center">
                                         <span uk-spinner="ratio: 4.5"></span>

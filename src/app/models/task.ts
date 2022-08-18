@@ -1,4 +1,5 @@
 export interface Task {
+    
     user_id: number,
     status: string,
     due_at: Date,
@@ -23,8 +24,10 @@ export interface Task {
       title:string,
       type:string,
       config: {
-        
-        name: string
+        name: string,
+        items: {
+
+        }
       }
     },
     id: number,
@@ -42,5 +45,4 @@ export interface Task {
     process: string,
     process_request: string,
     version_id: number
-
 }

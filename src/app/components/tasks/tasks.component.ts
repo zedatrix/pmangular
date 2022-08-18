@@ -3,6 +3,10 @@ import { Request } from 'src/app/models/request';
 import { Task } from 'src/app/models/task';
 import { UserService } from 'src/app/services/user/user.service';
 
+//@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -15,9 +19,12 @@ export class TasksComponent implements OnInit {
     lastPage: null,
     totalItems: null
   }
+
   selectedRequest: Request;
   selectedTask: Task;
   userTasks = [];
+
+  color="green";
 
   constructor(private userService: UserService) { }
 
