@@ -1,5 +1,5 @@
 export interface Task {
-    
+
     user_id: number,
     status: string,
     due_at: Date,

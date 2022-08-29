@@ -1,50 +1,55 @@
-<div class="uk-section uk-section-xsmall uk-height-viewport">
-    <div class="uk-container">
-        <div class="uk-width-1-3@m uk-margin-top uk-align-center">
-            <div class="uk-grid-small" uk-grid>
-                <div class="uk-width-1-1">
+<!--<div class="uk-section uk-section-xsmall uk-height-viewport" style="background:#F4F6F9;">-->
+    <div class="uk-container" style="background:#F4F6F9;padding-left:0px;padding-right:0px;">
+
+        <!--<div class="uk-width-1-3@m uk-align-center" style="background:#F4F6F9;">-->
+
+              <!--<div class="uk-grid-small" style="background:#F4F6F9;" uk-grid>-->
+
+                <div class="uk-width-1-2 uk-align-center" style="background:#F4F6F9;padding-left:0px;padding-right:0px;">
+                    <img style="height: 150px; width: 150px;" src="assets/img/pmang_logo.png" class="uk-margin-top uk-align-center">
                     <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large">
                         <form [formGroup]="loginForm" (submit)="login(loginForm.value)" class="uk-form-stacked">
-                            <h3 class="uk-h2 uk-text-center"><span><img style="height: 150px; width: 150px;" src="assets/img/pmang_logo.png"></span><br>Login</h3>
+
                             <div class="uk-margin-top">
-                                <label class="uk-form-label" for="insturl">Instance Name</label>
+                                <label class="uk-form-label" for="insturl" style="color:#B7B7B7;">Instance Name</label>
                                 <div class="uk-form-controls">
                                     <input class="uk-input" id="insturl" type="text" formControlName="instance">
                                 </div>
                             </div>
                             <div class="uk-margin-top">
-                                
-                                <label class="uk-form-label" for="clientId">Client ID</label>
+
+                                <label class="uk-form-label" for="clientId" style="color:#B7B7B7;">Client ID</label>
                                 <div class="uk-form-controls">
                                     <input class="uk-input" id="clientId" type="text" formControlName="clientId">
                                 </div>
                             </div>
                             <div class="uk-margin-top">
-                                
-                                <label class="uk-form-label" for="clientSecret">Client Secret</label>
+
+                                <label class="uk-form-label" for="clientSecret" style="color:#B7B7B7;">Client Secret</label>
                                 <div class="uk-form-controls">
                                     <input class="uk-input" id="clientSecret" type="password" formControlName="clientSecret">
                                 </div>
                             </div>
                             <div class="uk-margin-top">
-                                <label class="uk-form-label" for="username">Username</label>
+                                <label class="uk-form-label" for="username" style="color:#B7B7B7;">Username</label>
                                 <div class="uk-form-controls">
                                     <input class="uk-input" id="username" type="text" formControlName="username">
                                 </div>
                             </div>
                             <div class="uk-margin-top">
-                                <label class="uk-form-label" for="password">Password</label>
+                                <label class="uk-form-label" for="password" style="color:#B7B7B7;">Password</label>
                                 <div class="uk-form-controls uk-text-right">
                                     <input class="uk-input" id="password" type="password" formControlName="password">
                                 </div>
                             </div>
                             <div class="uk-margin-top">
-                                <input type="submit" class="uk-button uk-button-primary uk-width-1-1" value="Login">
+                                <input type="submit" class="uk-button uk-button-primary uk-width-1-1" value="Login" style="background:#B2DA60;">
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+
+            <!--</div>-->
+        <!--</div>-->
     </div>
-</div>
+<!--</div>-->

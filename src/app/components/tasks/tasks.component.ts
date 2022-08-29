@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+//import { UserAuth } from 'src/app/models/userAuth';
+
 import { Request } from 'src/app/models/request';
 import { Task } from 'src/app/models/task';
 import { UserService } from 'src/app/services/user/user.service';
-
-//@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
-
-
 
 @Component({
   selector: 'app-tasks',
@@ -24,9 +23,24 @@ export class TasksComponent implements OnInit {
   selectedTask: Task;
   userTasks = [];
 
+
+  taskForm: FormGroup;
+
+  //my_screen = {};
   color="green";
 
-  constructor(private userService: UserService) { }
+//  constructor(private userService: UserService, private formBuilder: FormBuilder, private formGroup: FormGroup) {
+  constructor(public userService: UserService, private formBuilder: FormBuilder) {
+    this.taskForm = this.formBuilder.group({
+
+
+    });
+
+  this.taskForm = new FormGroup({
+      name : new FormControl(),
+      lastname : new FormControl()
+    });
+  }
 
   ngOnInit(): void {
     this.getUserTasks();
@@ -70,5 +84,16 @@ export class TasksComponent implements OnInit {
        console.error(error);
      })
   }
+
+
+//-------------------------- Submit task --------------
+
+
+
+//  submitCase(formData: UserAuth): void{
+  //  this.submitCase(formData);
+  //  console.log('ggggggggg');
+    //console.log(response.data);
+//  }
 
 }
